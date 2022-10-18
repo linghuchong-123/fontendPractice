@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      function mouse() {
+        let x, y;
+
+        function update(event) {
+          x = event.pageX;
+          y = event.pageY;
+          console.log(x, y); // 在addEventListener中，所以会一直打印
+        }
+
+        window.onload = () => {
+          window.addEventListener("mousemove", update);
+        };
+
+        console.log(x, y); // 只会打印一次
+        return { x, y };
+      }
+
+      console.log(mouse()); // 只会打印一次
+    </script>
+  </body>
+</html>

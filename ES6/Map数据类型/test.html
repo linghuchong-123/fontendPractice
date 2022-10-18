@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    const map = new Map()
+    map.set('name', 'zhangsan')
+    map.set({ 'sex': 'nan' }, '男')
+    console.log(map);
+    console.log(map.get('name'));
+    console.log(map.get({ 'sex': 'nan' })); // undefined map记录的是键的内存地址，这样写两次会实例化两次对象，对象的栈引用地址不一样
+    console.log(map.name); // 不能使用打点调用的方法
+
+
+  </script>
+</body>
+
+</html>

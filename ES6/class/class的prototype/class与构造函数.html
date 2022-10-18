@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      class Foo {
+        constructor(name) {
+          this.name = name;
+          this.sex = "男";
+          Object.defineProperties(this, {
+            width: {
+              configurable: true,
+              enumerable: true,
+              value: 10,
+            },
+          });
+        }
+      }
+      Foo.prototype.age = 18;
+      console.dir(Foo);
+      console.log(Foo.prototype);
+      const foo = new Foo("zhangsan");
+      for (let key in foo) {
+        if (foo.hasOwnProperty(key)) {
+          console.log("own:" + key);
+        } else {
+          console.log("proto:" + key);
+        }
+      }
+      foo.age = 20;
+      console.log(foo, foo.age);
+
+      const foo2 = new Foo("lisi");
+      console.log(foo2, foo2.age);
+      foo2.age = 22;
+      console.log(foo2);
+      /* class继承 */
+      class Foot extends Foo {
+        constructor() {
+          super();
+        }
+      }
+      const foot = new Foot();
+      console.log(foot);
+
+      // --------------------------------------------------------
+      /* Point构造函数 */
+      function Point(name) {
+        this.name = name;
+        this.sex = "男";
+        // 定义在构造函数内的实例方法能通过实例访问
+        this.print = function () {
+          console.log("print");
+        };
+      }
+      // Point.prototype.age=18;
+      /* 打印出来的Point和Foo的结构是一样的，class应该和构造函数是一样的 */
+      console.log(Point);
+      console.log(Point.prototype);
+      // 定义在构造函数上的静态方法只能通过构造函数本身访问
+      Point.alert = function () {
+        console.log("alert");
+      };
+      Point.alert();
+      const point = new Point("wang");
+      /* point.__proto__与Point.prototype是相同的； */
+      console.log(point.__proto__);
+      console.log(point);
+      point.print();
+
+      /* ------------------------------------------------------- */
+      /* Object构造函数 */
+      console.dir(Object);
+      Object.create({ width: 10 });
+      const object = new Object();
+      // object.create({height:20}) // 报错，object上没有create方法
+    </script>
+  </body>
+</html>

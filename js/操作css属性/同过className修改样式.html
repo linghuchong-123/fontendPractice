@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+
+      .change {
+        /* width: 200px;
+        height: 200px; */
+        background-color: purple;
+        font-size: 20px;
+      }
+      .second {
+        border: 10px solid skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="second" style="color: #3498db">文本</div>
+    <script>
+      var text = document.querySelector("div");
+      text.onclick = function () {
+        // this.style.width = '200px';
+        // this.style.height = '200px';
+        // this.style.backgroundColor = 'purple';
+        // this.style.fontSize = '20px';
+        // this.style.color = '#fff';
+        //方法2
+        // this.className = "change";
+        //1.当同一个元素需要修改的属性较多，或多个元素修改成同一个样式时，用修改类名的方式要方便
+        //2.重新赋值的类名会覆盖掉上一个类名
+        /* 若需要保留以前的类名时,first second相当于占位符，之前有几个类名，就在这里写几个，同过元素选择器定义的类名也算;
+          行内式写的样式会优先级最高，不在className考虑范围之内
+        */
+        this.className = "first second change";
+      };
+    </script>
+  </body>
+</html>

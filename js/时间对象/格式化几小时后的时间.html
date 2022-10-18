@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      // 格式化时间 格式：yyyy-mm-dd hh:mm:ss
+      const getFormateTime = (time) => {
+        // 有参数时，获取参数的时间；没有时获取当前时间
+        let date;
+        if (time) {
+          date = new Date(time);
+        } else {
+          date = new Date();
+        }
+        // 获取年
+        const year = date.getFullYear().toString();
+        // 获取月
+        let month = date.getMonth().toString();
+        // 获取日
+        let day = date.getDay().toString();
+        // 获取时
+        let hour = date.getHours().toString();
+        // 获取分钟
+        let minute = date.getMinutes().toString();
+        // 获取秒
+        let second = date.getSeconds().toString();
+
+        month = parseInt(month) < 9 ? "0" + month + 1 : month + 1;
+        day = parseInt(day) < 10 ? "0" + day : day;
+        hour = parseInt(hour) < 10 ? "0" + hour : hour;
+        minute = parseInt(minute) < 10 ? "0" + minute : minute;
+        second = parseInt(second) < 10 ? "0" + second : second;
+
+        return (
+          year +
+          "-" +
+          month +
+          "-" +
+          day +
+          " " +
+          hour +
+          ":" +
+          minute +
+          ":" +
+          second
+        );
+      };
+      console.log(getFormateTime());
+
+      // 获取n个小时后的时间，并格式化
+      const getHourAfter = (hours) => {
+        const dateNow = new Date();
+        // 当前时间戳
+        const timestamp = dateNow.getTime();
+        console.log(timestamp);
+        // n小时后毫秒数
+        const milliSecond = timestamp + hours * 60 * 60 * 1000;
+        // 调用格式化函数
+        return getFormateTime(milliSecond);
+      };
+      console.log(getHourAfter(1));
+    </script>
+  </body>
+</html>

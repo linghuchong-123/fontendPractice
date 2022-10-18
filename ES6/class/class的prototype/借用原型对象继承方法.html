@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 借用父构造函数继承属性
+      // 1. 父构造函数
+      function Father(uname, age) {
+        // this 指向父构造函数的对象实例
+        this.uname = uname;
+        this.age = age;
+        this.walk = function () {
+          console.log("我会走路");
+        };
+        console.log("我是father");
+      }
+      Father.prototype.money = function () {
+        console.log(100000);
+      };
+      // 2 .子构造函数
+      function Son(uname, age, score) {
+        // this 指向子构造函数的对象实例
+        Father.call(this, uname, age);
+        this.score = score;
+        this.sing = function () {
+          console.log("我会唱歌");
+        };
+        Object.defineProperties(this, {
+          width: {
+            configurable: true,
+            enumerable: true,
+            value: 10,
+          },
+        });
+      }
+      // Son.prototype = Father.prototype;  这样直接赋值会有问题,如果修改了子原型对象,父原型对象也会跟着一起变化
+
+      Son.prototype = new Father(); //因为new会在内存中新开辟了一块空间，所以此时改变Son.prototype只会引起new Father()这个空间的变化，隔断了与Father.prototype的内存空间
+      // 如果利用对象的形式修改了原型对象,别忘了利用constructor 指回原来的构造函数
+      Son.prototype.constructor = Son;
+      // 这个是子构造函数专门的方法
+      Son.prototype.exam = function () {
+        console.log("孩子要考试");
+      };
+      // Son.prototype = new Father(); //由这里可见重新给prototype赋值确实会覆盖原来的原型对象，因为后面的son.exam报错了；但是只能覆盖通过prototype添加的方法，在构造函数中的方法和属性依然会保留下来
+      // Son.prototype.constructor = Son; //但是这个constructor指回确实没什么必要,因为无论是son.sing() son.sore都可以正常输出
+      var son = new Son("刘德华", 18, 100);
+      // console.log(son);
+      // son.money(); //100000
+      // son.exam(); //孩子要考试
+      // son.sing();
+      son.walk(); // 我会走路
+      // console.log(Father.prototype);
+      // console.log(Son.prototype);
+      // console.log(Son.prototype.constructor);
+      for (let key in son) {
+        if (son.hasOwnProperty(key)) {
+          console.log("own:" + key);
+        } else {
+          console.log("proto:" + key);
+        }
+      }
+
+      // var a = {
+      //     sx: 'nan',
+      // }
+      // var b = {
+      //     age: 'ne',
+      // }
+      // b = a;
+      // a.meo = 'jdsa';
+      // b.dj = 'jfia';
+      // console.log(a);
+      // console.log(b);
+      //复杂数据类型的赋值不同于简单数据类型的赋值，复杂数据类型的赋值(b=a),是把b的地址指向了a的地址，b把原来自己的内存空间丢弃不要了，现在a,b都指向同一个地址（即a原来的内存空间，b原来的内存空间访问不到了）,现在无论改变a还是b都会引起两者的同时改变
+    </script>
+  </body>
+</html>

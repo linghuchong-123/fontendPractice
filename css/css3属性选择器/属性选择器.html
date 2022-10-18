@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 以类名开头，同样可以使用属性选择器 */
+      .box[data-title] {
+        width: 100px;
+        height: 100px;
+        background-color: purple;
+      }
+      span[data-index] {
+        color: royalblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box" data-title="h1">标题</div>
+    <span data-index="1">内容</span>
+  </body>
+</html>

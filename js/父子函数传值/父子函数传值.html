@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      const son = (param, fun) => {
+        // 父函数给子函数传值，得到了父函数中的值
+        console.log(param);
+        const sonValue = "son";
+        // 子函数给父函数传值，父函数给子函数传一个函数作为参数，子函数把值作为 参数函数 的参数
+        fun(sonValue);
+      };
+      const father = (param) => {
+        let sonName;
+        son(param, (sonValue) => {
+          sonName = sonValue;
+        });
+        console.log(sonName);
+      };
+      father(2);
+    </script>
+  </body>
+</html>
