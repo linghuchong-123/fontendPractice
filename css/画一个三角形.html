@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-cn">
   <head>
     <meta charset="UTF-8" />
@@ -5,27 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      #box {
+      .father {
         width: 100px;
         height: 100px;
-        background-color: red;
+        background-color: bisque;
       }
-      .grandson {
-        height: 100%;
-        width: 100%;
-        background-color: green;
+      .box {
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top: 10px solid skyblue;
       }
     </style>
   </head>
 
   <body>
-    <div id="box">
-      box
-      <div id="child">
-        childchildchildchild
-        <div class="grandson"></div>
-      </div>
+    <div class="father">
+      <div class="box"></div>
     </div>
-    <script src="./test.js"></script>
+
+    <script></script>
   </body>
 </html>

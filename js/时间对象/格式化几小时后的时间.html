@@ -24,7 +24,7 @@
         // 获取月
         let month = date.getMonth().toString();
         // 获取日
-        let day = date.getDay().toString();
+        let day = date.getDate().toString();
         // 获取时
         let hour = date.getHours().toString();
         // 获取分钟
@@ -32,7 +32,10 @@
         // 获取秒
         let second = date.getSeconds().toString();
 
-        month = parseInt(month) < 9 ? "0" + month + 1 : month + 1;
+        month =
+          parseInt(month) < 9
+            ? "0" + (month + 1)
+            : (parseInt(month) + 1).toString();
         day = parseInt(day) < 10 ? "0" + day : day;
         hour = parseInt(hour) < 10 ? "0" + hour : hour;
         minute = parseInt(minute) < 10 ? "0" + minute : minute;
