@@ -6,7 +6,7 @@ const baseUrl = "https://jsonplaceholder.typicode.com/todos/";
 const id = ref("1");
 const url = computed(() => baseUrl + id.value);
 
-const { data, error } = useFetch(url);
+const { data, error ,retry} = useFetch(url);
 watchEffect(() => {
   console.log(data);
 });

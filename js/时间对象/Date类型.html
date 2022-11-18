@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      const date = new Date();
+      console.log(date); // Tue Nov 15 2022 10:01:31 GMT+0800 (中国标准时间)
+
+      // 1小时前的Date
+      const date1HourBefore = new Date(
+        new Date().getTime() - 1 * 60 * 60 * 1000
+      );
+      console.log(date1HourBefore); // Tue Nov 15 2022 09:13:41 GMT+0800 (中国标准时间)
+    </script>
+  </body>
+</html>
