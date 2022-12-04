@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">发送请求</button>
+    <div id="container"></div>
+    <script type="text/javascript">
+        var btn = document.getElementById('btn');
+        var container = document.getElementById('container');
+        //xml是extensoble markup language 可扩展的标记语言 作用是传输和储存数据
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', '/xml');
+            xhr.send();
+            xhr.onload = function() {
+                // xhr.responseXML 获取服务器端返回的xml数据 不再是xhr.response
+                var xmlDocument = xhr.responseXML;
+                var title = xmlDocument.getElementsByTagName('title')[0].innerHTML; //xml中也有和HTML中一样的获取标签元素的方式
+                container.innerHTML = title;
+            }
+        }
+    </script>
+</body>
+
+</html>

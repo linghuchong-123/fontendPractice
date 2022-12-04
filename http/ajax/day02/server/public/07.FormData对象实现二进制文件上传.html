@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        .container {
+            padding-top: 60px;
+        }
+        
+        .padding {
+            padding: 5px 0 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label>请选择文件</label>
+            <input type="file" id="file">
+            <div class="padding" id="box">
+                <!--<img src="" class="img-rounded img-responsive">-->
+            </div>
+            <div class="progress">
+                <div class="progress-bar" style="width: 0%;" id="bar">0%</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // 获取文件选择控件
+        var file = document.getElementById('file');
+        // 获取进度条元素
+        var bar = document.getElementById('bar');
+        // 获取图片容器
+        var box = document.getElementById('box');
+        // 为文件选择控件添加onchanges事件
+        // 在用户选择文件时触发
+        file.onchange = function() {
+            // 创建空的formData表单对象
+            var formData = new FormData();
+            // 将用户选择的文件追加到formData表单对象中 type为file的input控件，下面有files属性，里面存储着选择的文件，但是是数组的形式，而默认的是只能上传一个文件，所以这里用[0]来获取文件
+            formData.append('attrName', this.files[0]);
+            // 创建ajax对象
+            var xhr = new XMLHttpRequest();
+            // 对ajax对象进行配置
+            xhr.open('post', 'http://localhost:3000/upload');
+            // 在文件上传的过程中持续触发onprogress事件,系统会不断的发送progress事件，其中就包含loaded和total
+            xhr.upload.onprogress = function(ev) {
+                    console.log(ev);
+                    // ev.loaded 文件已经上传了多少
+                    // ev.total  上传文件的总大小
+                    var result = (ev.loaded / ev.total) * 100 + '%';
+                    // 设置进度条的宽度
+                    bar.style.width = result;
+                    // 将百分比显示在进度条中
+                    bar.innerHTML = result;
+                }
+                // 发送ajax请求
+            xhr.send(formData);
+            // 监听服务器端响应给客户端的数据
+            xhr.onload = function() {
+                // 如果服务器端返回的http状态码为200
+                // 说明请求是成功的
+                if (xhr.status == 200) {
+                    // 将服务器端返回的数据显示在控制台中
+                    var result = JSON.parse(xhr.responseText);
+                    // 动态创建img标签 动态创建的好处就是可以实现在加载完成之后再显示在页面中，如果直接在HTML中写上img标签会显示加载过程，对用户体验不好
+                    var img = document.createElement('img');
+                    // 给图片标签设置src属性
+                    img.src = result.path;
+                    // console.log(result.path);
+                    // "path": "F:\\前端练习\\前后端交互\\blog\\public\\uploads\\upload_55099cd29db9fb6c033ce427fa369416.jpg",这是服务器电脑端的绝对路径在客户端是访问不到的  客户端是通过访问网址的形式访问服务端的绝对路径的，只要截取uploads及后面的部分就可以
+                    // 当图片加载完成以后
+                    img.onload = function() {
+                        // 将图片显示在页面中
+                        box.appendChild(img);
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

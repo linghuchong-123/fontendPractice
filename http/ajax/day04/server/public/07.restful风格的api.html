@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        // 获取用户列表信息
+        $.ajax({
+            type: 'get',
+            url: '/users', //要和数据库的集合名字相同
+            success: function(response) {
+                console.log(response)
+            }
+        })
+
+        // 获取id为1的用户信息
+        $.ajax({
+            type: 'get',
+            url: '/users/1',
+            success: function(response) {
+                console.log(response)
+            }
+        })
+
+        // 获取id为1的用户信息 传统的HTML表单提价是不支持put和delete请求的，ajax请求支持
+        $.ajax({
+            type: 'delete',
+            url: '/users/10',
+            success: function(response) {
+                console.log(response)
+            }
+        })
+
+        // 获取id为1的用户信息
+        $.ajax({
+            type: 'put',
+            url: '/users/10',
+            success: function(response) {
+                console.log(response)
+            }
+        })
+    </script>
+</body>
+
+</html>
