@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      /* 在不结合try catch使用的情况下，不仅当前函数内的后面的代码会停止执行，函数外后面的代码也会停止执行 */
+      const funBefore = () => {
+        console.log("funBefore");
+        throw "抛出错误";
+      };
+
+      const funAfter = () => {
+        console.log("funAfter");
+      };
+
+      /*    console.log("函数外同步代码--调用前");
+      funBefore();
+      funAfter();
+      console.log("函数外同步代码--调用后"); */
+
+      /* ------使用try catch情况下，不影响后面的代码执行------------- */
+      const tryFunBefore = () => {
+        console.log("tryFunBefore");
+        throw "try catch抛出错误";
+      };
+
+      const tryFunAfter = () => {
+        console.log("tryFunAfter");
+      };
+
+      console.log("try函数外同步代码--调用前");
+      try {
+        tryFunBefore();
+      } catch (error) {
+        console.error(error);
+      }
+      tryFunAfter();
+      console.log("try函数外同步代码--调用后");
+    </script>
+  </body>
+</html>

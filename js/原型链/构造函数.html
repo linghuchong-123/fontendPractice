@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      /* 构造函数不能使用箭头函数 */
+      function Start(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sing = function () {
+          console.log("我会唱歌");
+        };
+      }
+      const ldh = new Start("zhangsan", 18);
+      console.log(ldh);
+      ldh.sing();
+    </script>
+  </body>
+</html>
