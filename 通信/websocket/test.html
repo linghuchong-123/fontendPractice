@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      console.log(location);
+      const ws = new WebSocket("ws://192.168.0.100:8099/ws/area/report/");
+      ws.onopen = () => {
+        console.log("链接成功");
+      };
+      ws.onclose = () => {
+        console.log("链接关闭");
+      };
+      ws.onerror = (err) => {
+        console.log(err);
+      };
+    </script>
+  </body>
+</html>
