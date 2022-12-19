@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      function Room() {
+        this.width = "180m";
+        const obj = {};
+        obj.age = 15;
+
+        // 必须使用this挂载，才能在实例中访问；相当于class类中的加上private修饰符，私有属性，只能在构造函数内部访问
+        this.obj = obj;
+      }
+
+      /* 相当于class类中的加上static修饰符，静态属性，只能在构造函数内部访问 */
+      Room.position = "教室";
+      console.log(Room.position);
+
+      const room = new Room();
+      console.log(room.obj);
+    </script>
+  </body>
+</html>
