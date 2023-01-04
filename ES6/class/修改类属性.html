@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    class Room {
+      constructor(name, age) {
+        this.name = name;
+        /* 在constructor中定义的变量只能在constructor中访问，实例，类，类里面的方法都不能访问 */
+        const height = '200m'
+        this._name = this.name;
+      }
+      width = "100m"; // 实例属性，不在constructor中可以不加this
+      /*  fun() {
+         console.log(height)
+       } */
+      /* 只读属性 */
+      get name_() {
+        return this.name
+      }
+    }
+
+    const room = new Room("教室", 18.2);
+
+    // 打点可以直接修改实例属性
+    room._name = "卧室";
+    console.log(room);
+    console.log(room.name_);
+  </script>
+</body>
+
+</html>

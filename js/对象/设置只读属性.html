@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      const obj = {
+        /* 方法1：在对象初始化时定义一个getter */
+        get readOnlyProperty() {
+          return 1024;
+        },
+        fun() {
+          console.log("这是一个函数");
+        },
+      };
+      console.log(obj.readOnlyProperty); // 1024;不能使用函数的形式调用
+      obj.fun();
+      obj.readOnlyProperty = 2048;
+      console.log(obj.readOnlyProperty); // 依然打印1024；可以设置但没有效果
+
+      /* 方法2：使用defineProperty定义getter */
+      const obj2 = {};
+      Object.defineProperty(obj2, "readOnlyProperty", {
+        value: 1024,
+        writable: false,
+        enumerable: true,
+        configurable: true, // 当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
+      });
+      console.log(obj2.readOnlyProperty);
+      obj2.readOnlyProperty = 2048;
+      console.log(obj2.readOnlyProperty); // 依然打印1024
+
+      /* 方法3：使用proxy */
+      const handler = {
+        get: function (target, key) {
+          return target[key];
+        },
+        set: function (target, key, value) {
+          if (key === "name") return;
+          target[key] = value;
+        },
+      };
+      let p = {
+        name: "test",
+      };
+      p = new Proxy(p, handler);
+      p.age = 18;
+      p.name = "new name";
+      console.log(p); // name还是test
+
+      /* 方法4：闭包;闭包可以形成一个作用域，子作用域可以访问父级，但是父级不能访问子作用域 */
+      const config = (function () {
+        const private = {
+          name: "zhangsan",
+        };
+        return function (key) {
+          return private[key];
+        };
+      })();
+
+      console.log(config("name"));
+    </script>
+  </body>
+</html>
