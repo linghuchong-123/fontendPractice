@@ -10,25 +10,37 @@
 
   <body>
     <script>
-      const indices = [];
-      const numberOfVertices = 0;
-      const gridX = 1;
-      const gridY = 1;
-      const gridX1 = 2;
-      for (let iy = 0; iy < gridY; iy++) {
-        for (let ix = 0; ix < gridX; ix++) {
-          const a = numberOfVertices + ix + gridX1 * iy;
-          const b = numberOfVertices + ix + gridX1 * (iy + 1);
-          const c = numberOfVertices + (ix + 1) + gridX1 * (iy + 1);
-          const d = numberOfVertices + (ix + 1) + gridX1 * iy;
+      function DeveloperError(message) {
+        /**
+         * 'DeveloperError' indicating that this exception was thrown due to a developer error.
+         * @type {String}
+         * @readonly
+         */
+        this.name = "DeveloperError";
 
-          // faces
+        /**
+         * The explanation for why this exception was thrown.
+         * @type {String}
+         * @readonly
+         */
+        this.message = message;
 
-          indices.push(a, b, d);
-          indices.push(b, c, d);
+        //Browsers such as IE don't have a stack property until you actually throw the error.
+        let stack;
+        try {
+          throw new Error();
+        } catch (e) {
+          stack = e.stack;
         }
+
+        /**
+         * The stack trace of this exception, if available.
+         * @type {String}
+         * @readonly
+         */
+        this.stack = stack;
       }
-      console.log(indices);
+      console.log(new DeveloperError("jsdfi"));
     </script>
   </body>
 </html>

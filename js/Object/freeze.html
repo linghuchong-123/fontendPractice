@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      /* freeze冻结一个对象。不能再对这个对象进行增删改操作。返回和传入参数相同的对象。 */
+      const freezeObj = Object.freeze({});
+      freezeObj.age = 17;
+      console.log(freezeObj.age); // undefined
+
+      const obj = {};
+      obj.age = 12;
+      console.log(obj.age);
+    </script>
+  </body>
+</html>

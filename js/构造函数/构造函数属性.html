@@ -23,10 +23,16 @@
 
     /* 相当于class类中的加上static修饰符，静态属性，只能通过构造函数访问 */
     Room.position = "教室";
-    console.log(Room.position);
+    console.log(Room.position); // "教室"
+
+    /* 通过原型添加的属性不能被构造函数访问，可以通过实例访问到 */
+    Room.prototype.area = "200m^2";
+    console.log(Room.area); // undefined
+
 
     const room = new Room();
-    console.log(room.obj);
+    console.log(room);
+    console.log(room.area); // "200m^2"
   </script>
 </body>
 
