@@ -31,6 +31,12 @@
         writable: false,
         enumerable: true,
         configurable: true, // 当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
+        get: function () {
+          return value;
+        },
+        set: function (newValue) {
+          return newValue;
+        },
       });
       console.log(obj2.readOnlyProperty);
       obj2.readOnlyProperty = 2048;

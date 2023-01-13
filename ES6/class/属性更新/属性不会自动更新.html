@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      class Room {
+        width = "10m";
+      }
+      const room = new Room();
+      setTimeout(() => {
+        room.width = "20m";
+        room.height = "30m";
+      }, 1000);
+
+      console.log(room);
+      console.log(room.width); // 10m
+      console.log(room.height); // undefined
+    </script>
+  </body>
+</html>

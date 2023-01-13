@@ -9,6 +9,13 @@
   </head>
 
   <body>
-    <script src="./static.js"></script>
+    <script>
+      /* class内不能实例化自身，Maximum call stack size exceeded */
+      class Room {
+        width = "10m";
+        length = new Room().width;
+      }
+      console.log(new Room().length);
+    </script>
   </body>
 </html>

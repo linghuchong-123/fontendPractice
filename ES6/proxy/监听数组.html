@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      const arr = [];
+      const arrHandler = {
+        get: (target, propKey, receiver) => {
+          console.log(`getting ${propKey}`);
+          return Reflect.get(target, propKey, receiver);
+        },
+        set: (target, propKey, value, receiver) => {
+          console.log(`setting ${propKey}`);
+          return Reflect.set(target, propKey, value, receiver);
+        },
+      };
+
+      const arrProxy = new Proxy(arr, arrHandler);
+      arrProxy.push("第1个");
+    </script>
+  </body>
+</html>

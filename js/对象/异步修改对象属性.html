@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <script>
+      const obj = {
+        name: "zhangsan",
+        children: [{ name: "123" }],
+      };
+      const append = (obj) => {
+        const obj1 = {
+          age: 19,
+        };
+        obj.children.push(obj1);
+        setTimeout(() => {
+          obj1.age = 20;
+        }, 10);
+      };
+      setTimeout(() => {
+        obj.name = "lisi";
+        append(obj);
+      }, 1000);
+
+      console.log(obj.name); // zhangsan
+
+      setTimeout(() => {
+        console.log(obj.name); // zhangsan
+      }, 900);
+
+      /* 
+        异步修改对象属性，当修改完成之后，能够获取到修改后的对象属性值。
+        当程序要获取对象的属性时，根据对象名找到栈中的堆的内存地址，然后去堆中查找；到栈到堆查找的过程在每次要获取对象属性时都会执行，所以才会在异步修改完成后能够获取到新值，因为此时堆中的值改了。
+        js内部只负责查找，查找的那一刻找到的是什么就返回给程序什么。
+      */
+      setTimeout(() => {
+        console.log(obj.children[1].age); // lisi
+      }, 1100);
+    </script>
+  </body>
+</html>
