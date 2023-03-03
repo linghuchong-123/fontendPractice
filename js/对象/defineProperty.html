@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    const obj = {
+      name: "zhangsan",
+      age: 17
+    }
+    let nameValue = 'zhangsan'
+    Object.defineProperty(obj, 'name', {
+      /* configurable指的不是不能修改属性值，是指的修饰符writable enumerable； 当设置configurable为false后，当显示的声明writable为false(默认值)后就不能修改为true，但先指定writable为true还是可以改成默认值(false);感觉configurable对writable enumerable作用不大；最大的用处是设置为false后就能是使用get set函数了*/
+      configurable: true,
+    });
+    Object.defineProperty(obj, "name", {
+      get: function () {
+        console.log("调用了get方法");
+        return nameValue
+      },
+      set: function (newValue) {
+        console.log("调用了set方法" + newValue);
+      }
+    })
+    console.log(obj.name);
+    obj.name = "李四"
+    console.log(obj.name);
+
+
+
+    /*  Object.defineProperty(obj, 'name', {
+       writable: false,
+     }) */
+    obj.name = 'lisi'
+    /*  Object.defineProperty(obj, 'name', {
+       writable: true
+     }) */
+    console.log(obj.name); // lisi
+
+    const arr = [1, 2]
+    console.log(Object.getOwnPropertyDescriptors(arr)); // length属性的configurable为false，不能使用get set函数
+
+  </script>
+</body>
+
+</html>

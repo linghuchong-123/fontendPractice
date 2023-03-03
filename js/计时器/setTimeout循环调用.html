@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    let count = 0;
+    /* 在setTimeout外面封装一层函数，循环调用这个函数 */
+    const loopFun = () => {
+      const timer = setTimeout(() => {
+        console.log("循环调用", count);
+        loopFun();
+        count++;
+      }, 100)
+
+      if (count > 10) {
+        clearTimeout(timer) //清除计时器
+      }
+    }
+    loopFun()
+  </script>
+</body>
+
+</html>
