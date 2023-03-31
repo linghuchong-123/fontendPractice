@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js修改样式</title>
+  <style>
+    /* #container {
+      background-image: url(./img/picture.png)
+    } */
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  
+  <script>
+    const container = document.getElementById('container')
+    container.textContent = 'js修改样式';
+    /* 短划线链接的属性名还是用短划线链接，不用驼峰;这种给style直接赋值的操作在js中是可以但是在ts中报错，style是只读属性不能赋值 */
+    // container.style = `border:1px solid red;height:100px;background-image:url(./img/picture.png)`;
+
+    // container.style.backgroundImage = 'url(./img/picture.png)'
+    // 在线的背景图片
+    container.style.backgroundImage = 'url(http://192.168.0.100:8810/1.png)';
+    container.style.backgroundRepeat = 'no-repeat';
+    container.style.backgroundSize = 'cover'; // 当图片小于盒模型时设置了repeat属性之后还要配上size属性，不然浏览器不知道怎么铺图片，就会没有背景图片
+    container.style.marginTop = '100px';
+    container.style.height = '12px';
+    container.style.width = '12px';
+    /* 涉及transform的写法 */
+    // container.style.transform = 'scale(0.5,0.5)'
+
+  </script>
+</body>
+</html>

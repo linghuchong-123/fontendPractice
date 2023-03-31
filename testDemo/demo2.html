@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>可拖动变化长度的曲线</title>
+  <style>
+    body {
+      margin: 0
+    }
+
+    #curve {
+      stroke: black;
+      stroke-width: 5;
+      fill: none;
+
+    }
+
+    #svg {
+      border: solid 1px red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div"></div>
+  <svg width="500" height="500" id="svg">
+    <path id="curve" d="M 100 250 C 150 100, 350 400, 400 250" />
+    <rect x="0" y="240" width="20" height="20" fill="red" draggable="true" ondrag="handleDrag(event)" />
+    <rect x="480" y="240" width="20" height="20" fill="red" draggable="true" ondrag="handleDrag(event)" />
+  </svg>
+  <script>
+    /* 在这个示例中，我们首先定义了一个SVG路径，表示一条三次贝塞尔曲线，它的起点是(100, 250)，终点是(400, 250)，控制点1是(150, 100)，控制点2是(350, 400)。接下来，我们在路径的起点和终点处放置了两个红色的矩形，它们是可拖动的。当这两个矩形被拖动时，我们会计算它们的位置，并根据它们的位置重新计算路径的控制点，以使曲线的长度随着矩形的位置而变化。
+
+当矩形被拖动时，我们会执行一个名为handleDrag的函数。该函数会获取矩形的位置和ID，并根据它们的位置计算新的路径。如果矩形是起点矩形，我们会将新路径的起点位置设置为矩形的X坐标，并将控制点1保持不变。如果矩形是终点矩形，我们会将新路径的终点位置设置为矩形的X坐标，并将控制点2保持不变。最后，我们会更新SVG路径和矩形的位置。 */
+    function handleDrag(e) {
+      const x = parseInt(e.clientX);
+      const y = parseInt(e.clientY);
+      const id = e.target.getAttribute("id");
+      const curve = document.getElementById("curve");
+      if (id === "start") {
+        const newX = Math.max(x, 20);
+        const path = `M ${newX} 250 C 150 100, 350 400, 400 250`;
+        curve.setAttribute("d", path);
+        e.target.setAttribute("x", newX - 10);
+      } else if (id === "end") {
+        const newX = Math.min(x, 480);
+        const path = `M 100 250 C 150 100, 350 400, ${newX} 250`;
+        curve.setAttribute("d", path);
+        e.target.setAttribute("x", newX - 10);
+      }
+    }
+
+    const div = document.getElementById('div');
+    console.log(div.offsetLeft);
+    console.log(div.offsetTop);
+
+  </script>
+</body>
+
+</html>

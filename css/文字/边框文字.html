@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>带有边框的文字效果</title>
+    <style>
+        h1 {
+          font-size: 36px;
+          /* color: #08979c; */
+          /* text-shadow属性的值由四个参数组成，分别表示阴影的水平偏移量、垂直偏移量、模糊半径和颜色。通过设置多个阴影，可以实现描边效果。在这个例子中，我们设置了四个阴影，分别位于文字的左上、右上、左下和右下方向，颜色为黑色，模糊半径为0，即不模糊。这样就实现了带有描边效果的文字。 */
+          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>这是一个带有边框的文字效果</h1>
+    <script>
+      const h1 = document.querySelector('h1')
+      h1.style.fontSize = '24px'
+      // h1.style.color = 0x08979c // 设置css颜色在js中也不能使用0x这种十六进制写法
+      h1.style.color = `rgb(8, 151, 156)`
+      // h1.style.color = 'transparent'
+      // h1.style.opacity = 0.1
+    </script>
+</body>
+</html>
