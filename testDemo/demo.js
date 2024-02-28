@@ -1,4 +1,4 @@
 const obj = {
-  name :'zhangsan'
-}
-console.log(obj['name']);
+  name: "zhangsan",
+};
+console.log(obj["name"]);
