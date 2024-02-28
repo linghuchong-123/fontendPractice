@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    class Animal {
+      constructor(){
+        this._name = 'cat';
+        this._children = []
+      }
+      get name(){
+        return this._name;
+      }
+      set name(value){
+        console.log('设置name');
+        this._name = value;
+      }
+      get children(){
+        return this._children;
+      }
+      set children(value){
+        /* 如果属性是复杂数据类型，用getter setter是拦截不到的 */
+        console.log('设置children')
+        this._children = value;
+      }
+    }
+    const cat = new Animal();
+    cat.children.push(1);
+    cat.name = 'xiaopang'
+
+  </script>
+</body>
+</html>

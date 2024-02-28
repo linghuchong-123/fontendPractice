@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    /* 一个变量值是复杂数据类型，能通过函数传参的形式改变值；
+      一个变量值是简单数据类型，不能通过函数传参的形式改变值   
+    */
+    let a = 1;
+    const addFun = (value) => {
+      value+1;
+      console.log(value);
+      value = 3;
+      console.log(value);
+    }
+    addFun(a)
+    console.log(a); 
+
+    let obj = {age:18,};
+    const objFun = (value) => {
+      value.age = 20;
+    }
+    objFun(obj)
+    console.log(obj);
+
+    let c =1;
+    c++;
+    console.log(c);
+  </script>
+</body>
+</html>

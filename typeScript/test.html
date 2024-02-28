@@ -5,10 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style></style>
+    <style>
+          /* .mybtn:active {
+        color: #4FA9FD;
+        border: 1px solid #4FA9FD;
+    } */
+    .mybtn {
+      border: 1px solid red;
+    }
+    .mybtn:focus {
+        color: #4FA9FD;
+        border: 1px solid #4FA9FD;
+        display: block;
+    }
+
+    </style>
   </head>
 
   <body>
-    <script src="./test.js"></script>
+    <ul>
+      <li tabindex="1"  class="mybtn">1</li>
+      <li tabindex="2" class="mybtn">2</li>
+      <li tabindex="3" class="mybtn">3</li>
+      <li tabindex="4" class="mybtn">4</li>
+      <li tabindex="5" class="mybtn">5</li>
+    </ul>
+    <!-- <div tabindex="1" class="mybtn">
+      Section 1
+    </div>
+    -->
+      
+      
+    <!-- <script src="./test.js"></script> -->
   </body>
 </html>
