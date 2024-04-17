@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    class Dog {
+      get name() {
+        return '旺财'
+      }
+      weight = '20KG'
+    };
+    const dog = new Dog();
+    console.log(dog);
+    console.log(dog.name);
+    console.log(Object.keys(dog)); // ['weight']，没有name
+    console.log(Object.getOwnPropertyNames(dog)); // ['weight']，没有name;与Object.keys()区别在于，getOwnPropertyNames()可以获得不可枚举的属性名，但是这里用get方法设置的访问器属性，是不直接储存在dog对象上的，是通过调用对象上的方法来获得的
+  </script>
+</body>
+
+</html>

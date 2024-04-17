@@ -24,13 +24,22 @@
     Object.defineProperty(obj, "name", {
       get: function () {
         console.log("调用了get方法");
-        return nameValue
+        return this[name]
       },
       set: function (newValue) {
         console.log("调用了set方法" + newValue);
+        this[name] = newValue
       }
     })
-    console.log(obj.name);
+    Object.defineProperty(obj, 'sex', {
+      // 可以给对象添加一个没有的属性
+      get: function () {
+        return '男'
+      },
+      enumerable: true
+    })
+    console.log(Object.keys(obj));
+    console.log(obj.sex);
     obj.name = "李四"
     console.log(obj.name);
 

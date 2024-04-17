@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    class Animal {
+      constructor() {
+        console.log('父类');
+      }
+    }
+    class Dog extends Animal {
+      constructor() {
+        super();
+        console.log('子类');
+      }
+    }
+    const dog = new Dog();
+    /*
+      父类
+      子类
+      当把super移到下面时，打印顺序就变成了 子类 父类
+    */
+  </script>
+</body>
+
+</html>

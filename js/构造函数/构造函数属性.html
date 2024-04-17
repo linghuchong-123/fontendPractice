@@ -16,9 +16,20 @@
       /* 相当于class类中的加上private修饰符，私有属性，只能在构造函数内部访问 */
       const obj = {};
       obj.age = 15;
-
       // 必须使用this挂载，才能在实例中访问；
       this.obj = obj;
+
+      // 定义属性和方法都必须加上this，不然在实例上和构造函数本身上都不能访问到
+      // height = 16;
+      // run = function () {
+      //   console.log(this.height);
+      // }
+
+
+      // 构造函数没有get set的写法
+      /* get color(){
+        return 'red'
+      } */
     }
 
     /* 相当于class类中的加上static修饰符，静态属性，只能通过构造函数访问 */

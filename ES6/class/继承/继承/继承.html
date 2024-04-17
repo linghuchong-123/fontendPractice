@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    class Animal {
+  name: string;
+  weight: string;
+
+  constructor(name) {
+    this.name = name;
+
+    /* 在constructor中定义的方法不能被继承 */
+    // function bark() {
+    //   console.log("汪汪汪");
+    // }
+  }
+  /* class中定义的方法，是实例上的方法，可以被继承 */
+  // run() {
+  //   console.log("跑跑");
+  // }
+}
+
+class Dog extends Animal {
+  constructor(name) {
+    super(name);
+    // this.bark() // this.bark is not a function
+    // this.run();
+  }
+  weight = "20kg";
+}
+
+Object.defineProperty(Dog.prototype, "weight", {
+  set(value) {
+    console.log("调用了set");
+    this._weight = value;
+  },
+  get() {
+    console.log("调用了get");
+    return this._weight;
+  },
+});
+
+const dog = new Dog("狗狗");
+dog.weight = "30kg";
+
+console.log(dog.weight);
+
+
+  </script>
+</body>
+
+</html>
