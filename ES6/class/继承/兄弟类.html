@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    class Animal {
+      constructor(name) {
+        this.name = name;
+      }
+      height = 10;
+      run() {
+        console.log("跑跑");
+      }
+    }
+    console.log(new Animal('动物').type);
+
+    class Dog extends Animal {
+      constructor() {
+        super();
+        this.type = 'dog'
+      }
+    }
+    const dog = new Dog("狗狗");
+    console.log(dog); // 有type属性
+
+    console.log(new Animal('动物').type); // 父类中也不能拿到子类的属性
+
+
+    class Cat extends Animal {
+      constructor() {
+        super()
+      }
+    }
+    const cat = new Cat('猫');
+    console.log(cat); // 作为兄弟类没有type属性
+  </script>
+</body>
+
+</html>

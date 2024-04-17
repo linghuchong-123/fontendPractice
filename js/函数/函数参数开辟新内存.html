@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    /* 一个变量值是复杂数据类型，能通过函数传参的形式改变值；
+      一个变量值是简单数据类型，不能通过函数传参的形式改变值。
+      解释：函数的形参也会创建一个变量
+    */
+    const a = 1;
+    const addFun = (value) => {
+      /* 其实执行的是
+      const value =a; 
+      value = value +1;
+      会创建一个名为value的变量，在栈中开劈出一块新的内存，因为赋的值也是简单数据类型，所以值直接存在栈中。
+       */
+      value+1;
+      console.log(value);
+      value = 3;
+      console.log(value);
+    }
+    addFun(a)
+    console.log(a); 
+
+    const obj = {age:18,};
+    const objFun = (value) => {
+      /* 执行的是：
+        const value = obj;
+        value.age = 20;
+        执行的和简单数据类型是一样的，但是赋值是复杂数据类型，obj和value都指向堆中的同一块内存地址，所以改变value的值也会影响obj的值。
+       */
+      value.age = 20;
+    }
+    objFun(obj)
+    console.log(obj);
+
+    let c =1;
+    c++;
+    console.log(c);
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-var funParam = function (params) {
-    console.log(params);
+/* 泛型函数 */
+var funParam = function (param, id) {
+    console.log(param);
 };
-// funParam({ age: 18, name: "zhangsan" });
 funParam(123);
