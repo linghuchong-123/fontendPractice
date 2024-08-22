@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>通过原型链实现继承</title>
-    <style></style>
-  </head>
 
-  <body>
-    <script>
-      //NOTE: 通过原型链实现继承;
-      /* 通过原型链实现继承有两个缺点：
-      第一，如果父类中有引用类型的属性，那么就会被所有子类共用，一个子类更改其从父类中继承的引用类型属性就会直接影响其他子类
-      第二个缺点：由于子类继承靠的是其原型prototype对父类实例化实现的，所以，在创建父类的时候，无法向父类传递参数，因而在实例化父类的时候也就无法对父类构造函数内的属性进行初始化。
-     参考链接 https://github.com/xusanduo08/Javascript/blob/master/Notes/js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%EF%BC%88%E4%B8%89%EF%BC%89-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.md */
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>通过原型链实现继承</title>
+  <style></style>
+</head>
 
-      function Father() {
-        this.fatherName = "爸爸";
-        this.fatherSay = function () {
-          console.log("我是爸爸");
-        };
-        this.books = ["htt权威指南", "3D游戏与计算机图形学"];
-      }
-      Father.prototype.fatherJob = "程序员";
-      Father.prototype.showBooks = function () {
-        return this.books;
+<body>
+  <script>
+    //NOTE: 通过原型链实现继承;
+    /* 通过原型链实现继承有两个缺点：
+    第一，如果父类中有引用类型的属性，那么就会被所有子类共用，一个子类更改其从父类中继承的引用类型属性就会直接影响其他子类
+    第二个缺点：由于子类继承靠的是其原型prototype对父类实例化实现的，所以，在创建父类的时候，无法向父类传递参数，因而在实例化父类的时候也就无法对父类构造函数内的属性进行初始化。
+   参考链接 https://github.com/xusanduo08/Javascript/blob/master/Notes/js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%EF%BC%88%E4%B8%89%EF%BC%89-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.md */
+
+    function Father() {
+      this.fatherName = "爸爸";
+      this.fatherSay = function () {
+        console.log("我是爸爸");
       };
-      const father = new Father();
-      console.log("father对象books:", father.showBooks());
+      this.books = ["htt权威指南", "3D游戏与计算机图形学"];
+    }
+    Father.prototype.fatherJob = "程序员";
+    Father.prototype.showBooks = function () {
+      return this.books;
+    };
+    const father = new Father();
+    console.log("father对象books:", father.showBooks());
 
-      function Son() {
-        this.sonName = "儿子";
-        this.sonSay = function () {
-          console.log("我是儿子");
-        };
-      }
+    function Son() {
+      this.sonName = "儿子";
+      this.sonSay = function () {
+        console.log("我是儿子");
+      };
+    }
 
-      //NOTE:通过prototype实现继承
-      Son.prototype = new Father();
-      // Son.prototype = Father.prototype; // 这种只会继承Father prototype上的属性和方法，不会继承构造函数中的属性和方法
+    //NOTE:通过prototype实现继承
+    Son.prototype = new Father();
+    // Son.prototype = Father.prototype; // 这种只会继承Father prototype上的属性和方法，不会继承构造函数中的属性和方法
 
-      Son.prototype.sonJob = "画家";
-      const son = new Son();
-      const son2 = new Son();
-      son2.books.push("WebGL编程指南");
-      console.log("son books:", son.showBooks());
-      console.log("son2 books:", son2.showBooks());
+    Son.prototype.sonJob = "画家";
+    const son = new Son();
+    const son2 = new Son();
+    son2.books.push("WebGL编程指南");
+    console.log("son books:", son.showBooks());
+    console.log("son2 books:", son2.showBooks());
 
-      console.log(son.fatherName); // 爸爸
-      console.log(son.fatherJob); // 程序员
-    </script>
-  </body>
+    console.log(son.fatherName); // 爸爸
+    console.log(son.fatherJob); // 程序员
+  </script>
+</body>
+
 </html>

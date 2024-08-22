@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    const obj = {}
+    console.log(obj.__proto__)
+    console.log(obj.Prototype) // undefined 从console面板中能看到双中括号Prototype,双中括号表示该属性或值是js引擎内部定义或者实现的，不能通过js代码直接访问或者修改
+    console.log(obj.prototype) // undefined 字面量创建的对象没有直接的prototype,但是能通过原型链obj.constructor.prototype访问到
+    console.dir(obj.constructor) // f Object 
+    console.dir(obj.constructor.prototype) // Object
+    console.log(obj.__proto__ == obj.constructor.prototype); // true
+    /*
+      由上可以得出一个结论：字面量创建对象，是通过new Object构造函数出来的，只是这个new过程隐藏在js引擎中了。
+    */
+  </script>
+</body>
+
+</html>

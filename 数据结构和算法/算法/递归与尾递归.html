@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    const animation = (num) => {
+      if (num < 10) {
+        console.log(123)
+        /* 在函数的最后一步操作调用函数自身称为尾递归，尾递归只需要保存内存函数的调用记录（调动位置，变量），不会造成栈溢出 */
+        animation(3)
+      }
+    }
+    animation(3)
+
+    const animation2 = (num) => {
+      if (num < 10) {
+        /* 报错：Maximum call stack size exceeded；这种不属于尾递归，所以一运行就报错栈溢出 */
+        animation2(3)
+        console.log(456)
+      }
+    }
+    animation2(3)
+
+    const animation3 = (num) => {
+      /* 这个函数不是尾递归调用，但是并没有报错，因为requestAnimationFrame是异步函数，console.log是同步调用，也相当于最后一步调用的函数自身 */
+      requestAnimationFrame(animation3)
+      console.log(789)
+    }
+    animation3(3)
+  </script>
+</body>
+
+</html>

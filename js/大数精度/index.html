@@ -1,0 +1,52 @@
+<!--
+ * @Description: bignumber.js库使用，用于处理小数计算中的精度丢失问题
+ * @Author: yangsen
+ * @Date: 2023-03-16 11:20:52
+ * @LastEditors: yangsen
+ * @LastEditTime: 2023-03-16 17:28:15
+-->
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bignumber</title>
+  <style></style>
+</head>
+
+<body>
+
+
+
+  <script type="module">
+    import { BigNumber } from './bignumber.mjs'
+    const x = new BigNumber(1.2346789);
+    console.log(x);
+    // 平方计算
+    const y = x.exponentiatedBy(2)
+    console.log(y) // 1.52443198610521
+    // 开方
+    const c = new BigNumber(1.44)
+    const d = c.squareRoot();
+    console.log(d.toNumber()); // 1.2
+    // 加法
+    const num1 = new BigNumber(0.1);
+    const num2 = new BigNumber(0.2);
+    const a = num1.plus(num2);
+    console.log(a.toNumber()); // 0.3
+    // 减法
+    const b = num2.minus(num1);
+    console.log(b.toNumber()); // 0.1
+    // 乘法
+    const e = num1.times(num2);
+    console.log(e.toNumber()); // 0.02
+    // 除法
+    const f = num2.dividedBy(num1);
+    console.log(f.toNumber()); //2
+  </script>
+
+</body>
+
+</html>

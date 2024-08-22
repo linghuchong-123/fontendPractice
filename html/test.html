@@ -16,10 +16,14 @@
 </head>
 
 <body>
-  <div class="father">
-    <div class="son"></div>
-  </div>
-  <script></script>
+  <div id="container"></div>
+  <canvas id="canvasContain"></canvas>
+  <script>
+    const container = document.getElementById("container")
+    console.log(container.context);
+    const canvasContain = document.getElementById("canvasContain");
+    console.log(canvasContain.context);
+  </script>
 </body>
 
-</html>
+</html>   

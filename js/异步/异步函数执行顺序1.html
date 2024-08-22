@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    setTimeout(() => {
+      // Promise.resolve返回一个Promise，状态为fullFilled，所以不需要zai
+      Promise.resolve().then((data) => {
+        console.log(data);
+        console.log(123);
+      })
+      setTimeout(() => {
+        console.log('第1个setTimeout里面的setTimeout');
+      }, 1);
+      console.log('第1个setTimeout里面的同步函数');
+    }, 1);
+
+    setTimeout(() => {
+      console.log('第2个setTimeout');
+    }, 1);
+    /* 
+      第1个setTimeout里面的同步函数
+      undefined
+      123
+      第2个setTimeout
+      第1个setTimeout里面的setTimeout
+    */
+
+
+    /* --------------------------------------- */
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise中的setTimeout')
+      }, 1);
+    });
+
+    setTimeout(() => {
+      console.log('外面的setTimeout');
+    }, 1);
+
+    promise.then((data) => {
+      console.log(data);
+    });
+/* 
+          promise中的setTimeout
+          外面的setTimeout
+        */
+
+    /* NOTE:
+      理解程序执行，当js代码被加载下来后，会把整个代码都扫描一遍，有些同步代码直接执行了（for循环这种的），函数会放进内存中等待调用的时候执行，异步代码会，扫描完一遍会把当前
+      1.等待的时间小的先执行
+      2.相同的等待时间，按宏任务微任务区分执行的先后顺序
+      3.同属微任务（宏任务）按代码的先后
+    */
+  </script>
+</body>
+
+</html>
