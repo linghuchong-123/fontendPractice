@@ -1,7 +1,13 @@
-const bigBox = document.getElementById("bigBox");
-const box = document.getElementById("box");
+import { addListener, launch } from 'devtools-detector';
+const view = document.createElement('div');
+document.body.appendChild(view);
 
-const fun = (option = { age: 10 }) => {
-  console.log(option.age);
-};
-fun();
+// 1. add listener
+addListener(
+  (isOpen) =>
+    (view.innerText = isOpen
+      ? 'devtools status: open'
+      : 'devtools status: close')
+);
+// 2. launch detect
+launch();; // 如果这行不被输出，可能表示开发者工具已打开
