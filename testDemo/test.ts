@@ -1,6 +1,5 @@
-function fun(): string {
-  const s = "24";
-  return s;
+class Animal {
+  constructor() {}
 }
 
-
+console.log(Animal.name);
