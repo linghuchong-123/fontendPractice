@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style></style>
-  </head>
 
-  <body>
-    <div id="idfdd"></div>
-    <script>
-      const handler = {
-        get: function (target, propKey, receiver) {
-          console.log(`getting ${propKey}!`);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style></style>
+</head>
 
-          return Reflect.get(target, propKey, receiver);
-        },
-        set: function (target, propKey, value, receiver) {
-          console.log(`setting ${propKey}!`);
-          return Reflect.set(target, propKey, value, receiver);
-        },
-      };
+<body>
+  <div id="idfdd"></div>
+  <script>
+    const handler = {
+      get: function (target, propKey, receiver) {
+        console.log(`getting propKey:${propKey} receiver:${receiver}!`);
 
-      const p = {
-        name: "test",
-      };
-      const proxy = new Proxy(p, handler);
+        return Reflect.get(target, propKey, receiver);
+      },
+      set: function (target, propKey, value, receiver) {
+        console.log(`setting ${propKey} propKey:${propKey} !`, target, receiver);
+        return Reflect.set(target, propKey, value, receiver);
+      },
+    };
 
-      /* 能使用proxy做参数再次构建proxy */
-      console.log(typeof proxy); // object
-      const proxy2 = new Proxy(proxy, handler);
-      console.log(proxy2);
+    const p = {
+      name: "test",
+    };
+    const proxy = new Proxy(p, handler);
 
-      /*
-        NOTE: new Proxy会返回一个Proxy实例，对这个进行访问才会触发handler函数；
-        NOTE: Proxy实例包含handler target两部分；
-      */
-      proxy.age = 18;
-      proxy.name = "new name";
+    /* 能使用proxy做参数再次构建proxy */
+    console.log(typeof proxy); // object
+    const proxy2 = new Proxy(proxy, handler);
+    console.log(proxy2);
 
-      console.log(p);
-      console.log(proxy);
-    </script>
-  </body>
+    /*
+      NOTE: new Proxy会返回一个Proxy实例，对这个进行访问才会触发handler函数；
+      NOTE: Proxy实例包含handler target两部分；
+    */
+    proxy.age = 18;
+    proxy.name = "new name";
+
+    console.log(p);
+    console.log(proxy);
+  </script>
+</body>
+
 </html>

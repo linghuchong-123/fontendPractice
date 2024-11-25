@@ -1,0 +1,62 @@
+{
+  "data": {
+    "code": 0,
+    "message": "获取成功",
+    "data": [
+      {
+        "projectName": "测试项目1",
+        "projectDesc": "测试项目1的描述",
+        "projectId": "50443948",
+        "rowNum": 1
+      },
+      {
+        "projectName": "123",
+        "projectDesc": "123",
+        "projectId": "50507850",
+        "rowNum": 2
+      },
+      {
+        "projectName": "3333",
+        "projectDesc": "333",
+        "projectId": "50508012",
+        "rowNum": 3
+      }
+    ]
+  },
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "access-control-allow-origin": "*",
+    "connection": "close",
+    "content-length": "302",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Thu, 21 Apr 2022 07:54:30 GMT",
+    "etag": "W/\"12e-aZuRpetA7wjZs9r9fZJ1jXLAVKE\"",
+    "x-powered-by": "Express"
+  },
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false
+    },
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "headers": {
+      "Accept": "application/json, text/plain, */*"
+    },
+    "baseURL": "/api",
+    "url": "/project/getAllProject",
+    "method": "get"
+  },
+  "request": {}
+}
