@@ -15,10 +15,15 @@
     const map = new Map()
     map.set('name', 'zhangsan')
     map.set({ 'sex': 'nan' }, '男')
-    console.log(map);
+    console.log(map.keys());
     console.log(map.get('name'));
     console.log(map.get({ 'sex': 'nan' })); // undefined map记录的是键的内存地址，这样写两次会实例化两次对象，对象的栈引用地址不一样
     console.log(map.name); // 不能使用打点调用的方法
+
+    /* 获取键为对象的值正确用法 */
+    const objKey = { age: 18 };
+    map.set(objKey, '18岁');
+    console.log(map.get(objKey)); // 18岁
 
 
   </script>

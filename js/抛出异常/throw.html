@@ -1,48 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style></style>
-  </head>
 
-  <body>
-    <script>
-      /* 在不结合try catch使用的情况下，不仅当前函数内的后面的代码会停止执行，函数外后面的代码也会停止执行 */
-      const funBefore = () => {
-        console.log("funBefore");
-        throw "抛出错误";
-      };
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style></style>
+</head>
 
-      const funAfter = () => {
-        console.log("funAfter");
-      };
+<body>
+  <script>
+    /* 在不结合try catch使用的情况下，不仅当前函数内的后面的代码会停止执行，函数外后面的代码也会停止执行 */
+    const funBefore = () => {
+      console.log("funBefore");
+      throw new Error("抛出错误");
+    };
 
-      console.log("函数外同步代码--调用前");
-      funBefore();
-      funAfter();
-      console.log("函数外同步代码--调用后");
+    const funAfter = () => {
+      console.log("funAfter");
+    };
 
-      /* ------使用try catch情况下，不影响后面的代码执行------------- */
-      const tryFunBefore = () => {
-        console.log("tryFunBefore");
-        throw "try catch抛出错误";
-      };
+    console.log("函数外同步代码--调用前");
+    // funBefore();
+    funAfter();
+    console.log("函数外同步代码--调用后");
 
-      const tryFunAfter = () => {
-        console.log("tryFunAfter");
-      };
+    /* ------使用try catch情况下，不影响后面的代码执行------------- */
+    const tryFunBefore = () => {
+      console.log("tryFunBefore");
+      throw "try catch抛出错误";
+    };
 
-      console.log("try函数外同步代码--调用前");
+    const tryFunAfter = () => {
+      console.log("tryFunAfter");
+    };
+
+    console.log("try函数外同步代码--调用前");
+    try {
+      tryFunBefore();
+    } catch (error) {
+      console.error(error);
+    }
+    tryFunAfter();
+    console.log("try函数外同步代码--调用后");
+
+    /* ------------------try catch不能捕获到异步函数中的错误------------------------ */
+    try {
+      setTimeout(() => {
+        throw new Error('setTimeout抛出错误');
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+    }
+
+    (async () => {
       try {
-        tryFunBefore();
-      } catch (error) {
-        console.error(error);
+        /* await关键字可以暂停块级作用域后面代码的执行，直到异步函数执行完毕，所以可以通过tray catch捕获到错误；
+        try catch不能捕获到异步函数中的错误，是因为异步函数的错误是发生在未来某一个不确定的时刻，而try catch只能捕获到当前执行栈中错误*/
+        await setTimeout(() => {
+          console.log('setTimeout同步代码');
+        }, 1000);
+      } catch (err) {
+        console.log(err)
       }
-      tryFunAfter();
-      console.log("try函数外同步代码--调用后");
-    </script>
-  </body>
+    })()
+
+
+
+
+  </script>
+</body>
+
 </html>
