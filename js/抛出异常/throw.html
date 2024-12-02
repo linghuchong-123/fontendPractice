@@ -39,6 +39,7 @@
     console.log("try函数外同步代码--调用前");
     try {
       tryFunBefore();
+      console.log('使用try catch的情况下,会影响同一作用域往后的代码执行');
     } catch (error) {
       console.error(error);
     }
@@ -65,10 +66,6 @@
         console.log(err)
       }
     })()
-
-
-
-
   </script>
 </body>
 
