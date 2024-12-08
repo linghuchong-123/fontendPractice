@@ -1,3 +1,4 @@
-node_modeules/*
 .modules.yaml
 debug.log
+# 子文件夹下面的node_modules也会被忽略掉
+**/node_modules  

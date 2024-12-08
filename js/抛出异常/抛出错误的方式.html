@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    // 例 1.3.2
+    function fn(num) {
+      if (typeof num !== 'number') throw new Error('类型错误')
+      console.log(num)
+    }
+    function foo() {
+      bar()
+    }
+    function bar() {
+      fn('0')
+    }
+    foo()
+
+    /*
+      throw 可以被try catch 捕获，但是console.error()不能被捕获；throw会沿着调用堆栈向上传播，直至被捕获
+      throw new Error可以携带更多的信息，并且会显示调用堆栈
+    */
+    try {
+      // throw '直接throw'
+      // throw obj;
+      console.error('console.error')
+      throw new Error(JSON.stringify(obj), { cause: 'cause' })
+    } catch (error) {
+      console.error(error)
+    }
+
+    /** 
+     * 自定义Error类
+     */
+    class MyError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'MyError';
+      }
+    }
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
