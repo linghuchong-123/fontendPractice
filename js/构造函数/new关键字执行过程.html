@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style></style>
-  </head>
 
-  <body>
-    <script>
-      // 定义一个Person构造函数
-      function Person(name, age) {
-        this.name = name;
-        this.age = age;
-      }
-      //另外定义一个createNew()用来模拟new关键字的执行过程
-      function createNew(fn, ...args) {
-        let obj = {}; // 1. 创建一个空对象
-        obj.__proto__ = fn.prototype; // 2. 将obj的__proto__属性指向构造函数的prototype
-        let result = fn.apply(obj, args); // 3.将fn的执行上下文创建的this绑定到obj上，并执行
-        //fn.apply()的返回值就是fn的返回值，由于例子中Person()没有返回值,所以此处返回值是undefined
-        console.log(result); //undefined
-        return result instanceof Object ? result : obj; //4. 如果构造函数返回的是引用数据类型，则直接返回这个结果。否则，返回新创建的对象
-      }
-      //执行createNew()看一下它的返回结果
-      let createNew1 = createNew(Person, "yy", 18);
-      console.log(createNew1); //Person {name: "yy", age: 18}
-      //使用new直接操作Person()看一下它的结果
-      let person = new Person("yy", 18);
-      console.log(person); //Person {name: "yy", age: 18}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style></style>
+</head>
 
-      //可以看到createNew()的结果与使用new得到的结果一致，说明createNew()代表的就是new内部的原理。
-    </script>
-  </body>
+<body>
+  <script>
+    // note:构造函数首字母大写，用于区分普通函数；普通函数使用new关键字返回的是undefined
+    // 定义一个Person构造函数
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    //另外定义一个createNew()用来模拟new关键字的执行过程
+    function createNew(fn, ...args) {
+      let obj = {}; // 1. 创建一个空对象
+      obj.__proto__ = fn.prototype; // 2. 将obj的__proto__属性指向构造函数的prototype
+      let result = fn.apply(obj, args); // 3.将fn的执行上下文创建的this绑定到obj上，并执行
+      //fn.apply()的返回值就是fn的返回值，由于例子中Person()没有返回值,所以此处返回值是undefined
+      console.log(result); //undefined
+      return result instanceof Object ? result : obj; //4. 如果构造函数返回的是引用数据类型，则直接返回这个结果。否则，返回新创建的对象
+    }
+    //执行createNew()看一下它的返回结果
+    let createNew1 = createNew(Person, "yy", 18);
+    console.log(createNew1); //Person {name: "yy", age: 18}
+    //使用new直接操作Person()看一下它的结果
+    let person = new Person("yy", 18);
+    console.log(person); //Person {name: "yy", age: 18}
+
+    //可以看到createNew()的结果与使用new得到的结果一致，说明createNew()代表的就是new内部的原理。
+  </script>
+</body>
+
 </html>
