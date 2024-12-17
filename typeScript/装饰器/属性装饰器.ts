@@ -1,3 +1,4 @@
+// https://juejin.cn/post/7277835425960099874
 function dec(value, context: ClassFieldDecoratorContext) {
   console.log(context);
   return (initialValue) => {
