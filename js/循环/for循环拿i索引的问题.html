@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    /* 问题：使用var定义的变量i，在循环中使用异步函数，i的值是5，而不是0，1，2，3，4 */
+    // for (var i = 0; i < 5; i++) {
+    //   setTimeout(() => {
+    //     console.log(i)
+    //   }, 1);
+    // }
+
+    /* 解决方法：使用let定义变量i，在循环中使用异步函数，i的值是0，1，2，3，4 */
+    // for (let i = 0; i < 5; i++) {
+    //   setTimeout(() => {
+    //     console.log(i)
+    //   }, 1);
+    // }
+
+    /* 解决方法：使用闭包 */
+    for (var i = 0; i < 5; i++) {
+      var indexFun = (function (value) {
+        setTimeout(function () {
+          console.log(value);
+        }, 1);
+      })(i);
+    }
+
+  </script>
+</body>
+
+</html>
